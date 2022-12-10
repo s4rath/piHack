@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "527058237994",
+    "project_id": "pihack",
+    "storage_bucket": "pihack.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527058237994:android:7b09abbca449090ea3a153",
+        "android_client_info": {
+          "package_name": "com.example.the_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527058237994-k29u82317ijn5hn5vq4gkab1une13uhn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.the_app",
+            "certificate_hash": "ca893415174583308ba3cfe0c449a2ed51cdc663"
+          }
+        },
+        {
+          "client_id": "527058237994-m7ou5laf97huq1nr68pv2ktag5vah18b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrgmFLM0zwdGRhV-KXm4UfNZ4z5DCKp3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527058237994-m7ou5laf97huq1nr68pv2ktag5vah18b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
