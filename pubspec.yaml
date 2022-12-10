@@ -41,6 +41,7 @@ dependencies:
   google_sign_in: ^5.4.2
   get: ^4.6.5
   flutter_slider_drawer: ^2.1.2
+  cloud_firestore: ^4.2.0
 
 
 dev_dependencies:
@@ -71,6 +72,8 @@ flutter:
     - images/facebook.png
     - images/google.png
     - images/welcome.png
+    - images/blank_profile.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

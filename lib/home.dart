@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:get/get.dart';
+import 'package:the_app/login/loginp.dart';
 import '../services/firebase_services.dart';
 import 'controller/getC.dart';
 
@@ -11,11 +13,8 @@ class HomePage extends StatelessWidget {
   final GlobalKey<SliderDrawerState> _sliderDrawerKey =
       GlobalKey<SliderDrawerState>();
 
-
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       body: SliderDrawer(
           appBar: SliderAppBar(
@@ -63,9 +62,11 @@ class _SliderView extends StatelessWidget {
             backgroundColor: Colors.grey,
             child: CircleAvatar(
               radius: 60,
-              backgroundImage: Image.network(
-                      'https://nikhilvadoliya.github.io/assets/images/nikhil_1.webp')
-                  .image,
+              backgroundImage:Image.asset('images/blank_profile.jpg').image,
+              //  Image.network(
+              //         'https://nikhilvadoliya.github.io/assets/images/nikhil_1.webp')
+              //     .image
+                  
             ),
           ),
           const SizedBox(
@@ -83,51 +84,51 @@ class _SliderView extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          ...[
-            Menu(Icons.home, 'Home'),
-            Menu(Icons.add_circle, 'Add Post'),
-            Menu(Icons.notifications_active, 'Notification'),
-            Menu(Icons.favorite, 'Likes'),
-            Menu(Icons.settings, 'Setting'),
-            Menu(Icons.arrow_back_ios, 'LogOut')
-          ]
-              .map((menu) => _SliderMenuItem(
-                  title: menu.title,
-                  iconData: menu.iconData,
-                  onTap: onItemClick))
-              .toList(),
+          ListTile(
+              title: Text('Home',
+                  style: const TextStyle(
+                      color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
+              leading: Icon(Icons.home, color: Colors.black),
+              onTap: () => null),
+          ListTile(
+              title: Text('Add Post',
+                  style: const TextStyle(
+                      color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
+              leading: Icon(Icons.add_circle, color: Colors.black),
+              onTap: () => null),
+          ListTile(
+              title: Text('Notification',
+                  style: const TextStyle(
+                      color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
+              leading: Icon(Icons.notifications_active, color: Colors.black),
+              onTap: () => null),
+          ListTile(
+              title: Text('Likes',
+                  style: const TextStyle(
+                      color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
+              leading: Icon(Icons.favorite, color: Colors.black),
+              onTap: () => null),
+          ListTile(
+              title: Text('Setting',
+                  style: const TextStyle(
+                      color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
+              leading: Icon(Icons.settings, color: Colors.black),
+              onTap: () => null),
+          ListTile(
+              title: Text('LogOut',
+                  style: const TextStyle(
+                      color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
+              leading: Icon(Icons.arrow_back_ios, color: Colors.black),
+              onTap: () => {
+                FirebaseAuth.instance.signOut().then((value) => {
+                  Get.to(LoginScreen())
+                })
+              }),
+          
         ],
       ),
     );
   }
 }
 
-class Menu {
-  final IconData iconData;
-  final String title;
-
-  Menu(this.iconData, this.title);
-}
-
-class _SliderMenuItem extends StatelessWidget {
-  final String title;
-  final IconData iconData;
-  final Function(String)? onTap;
-
-  const _SliderMenuItem(
-      {Key? key,
-      required this.title,
-      required this.iconData,
-      required this.onTap})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-        title: Text(title,
-            style: const TextStyle(
-                color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
-        leading: Icon(iconData, color: Colors.black),
-        onTap: () => onTap?.call(title));
-  }
-}
+ 
