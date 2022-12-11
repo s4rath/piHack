@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../home.dart';
+import '../screens/home.dart';
 import '../services/firebase_services.dart';
-
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -15,6 +14,13 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  final TextEditingController _textFieldController = TextEditingController();
+  final List toklist = [
+    'CMPTmLrgfYC',
+    'GK73YKE2XD',
+    'kfcVXjcFkvNQQ',
+    'eVhdeHqUrM'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +36,62 @@ class _LoginScreenState extends State<LoginScreen> {
             width: double.infinity,
             height: MediaQuery.of(context).size.height / 3,
             child: Image.asset('images/flutter.png'),
+          ),
+          Center(
+            child: Container(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Click here to '),
+                  ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('TextField in Dialog'),
+                                content: TextField(
+                                  //  onChanged: (value) {
+                                  //    setState(() {
+                                  //      valueText = value;
+                                  //    });
+                                  //  },
+                                  controller: _textFieldController,
+                                  decoration: InputDecoration(
+                                      hintText: "Text Field in Dialog"),
+                                ),
+                                actions: <Widget>[
+                                  ElevatedButton(
+                                    //  color: Colors.green,
+                                    //  textColor: Colors.white,
+                                    child: Text('OK'),
+                                    onPressed: () async {
+                                      var myListFiltered = toklist.where((e) =>
+                                          e == _textFieldController.text);
+                                      if (myListFiltered.length > 0) {
+                                        await FirebaseServices()
+                                            .signInWithGoogle('counselor');
+                                        Get.to(HomePage());
+                                        // Do stuff with myListFiltered.first
+                                      } else {
+                                        Get.to(LoginScreen());
+                                        Get.snackbar('TokenID Error',
+                                            'Please enter correct ID');
+                                        // Element is not found
+                                      }
+
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              );
+                            });
+                      },
+                      child: Text('Doctors'))
+                ],
+              ),
+            ),
           ),
           Expanded(
             child: Container(
@@ -110,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>  HomePage()));
+                                  builder: (context) => HomePage()));
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -149,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           GestureDetector(
                             onTap: () async {
-                              await FirebaseServices().signInWithGoogle();
+                              await FirebaseServices().signInWithGoogle('user');
                               Get.to(HomePage());
                             },
                             child: Container(

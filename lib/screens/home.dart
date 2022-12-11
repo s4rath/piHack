@@ -1,20 +1,28 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:get/get.dart';
+import 'package:the_app/components/expandablefab.dart';
 import 'package:the_app/login/loginp.dart';
-import '../services/firebase_services.dart';
-import 'controller/getC.dart';
+import 'package:the_app/screens/posts.dart';
+import '../../services/firebase_services.dart';
+import '../controller/getC.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
+  final db = FirebaseFirestore.instance;
   final GlobalKey<SliderDrawerState> _sliderDrawerKey =
       GlobalKey<SliderDrawerState>();
+      final user= FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: SliderDrawer(
           appBar: SliderAppBar(
@@ -30,12 +38,67 @@ class HomePage extends StatelessWidget {
               _sliderDrawerKey.currentState!.closeSlider();
             },
           ),
-          child: Container(
-            color: Colors.amber,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Text('Container'),
-          )),
+          child: Container()
+          // StreamBuilder<QuerySnapshot>(
+          //   stream: FirebaseFirestore.instance.collection("posts").snapshots(),
+          //   builder: ((BuildContext context,AsyncSnapshot snapshot) {
+          //     if(!snapshot.hasData){
+          //       return Center(
+          //         child: CircularProgressIndicator(),
+          //       );
+          //     }
+          //     return Container(
+          //       child: ListView(
+          //         children: try(snapshot.data.docs.map),
+          //       ).toList(),
+          //     );
+              // else{
+              //     children: snapshot.data!.docs.map((doc) {
+              //   return Card(
+              //     child: ListTile(
+              //       title: Text(doc.data().toString()),
+              //     ),
+              //   );
+              // }).toList();
+            
+              // }
+              // return Column();
+          //   }
+          //   ),
+          // )
+          // Container(
+          //   color: Colors.amber,
+          //   height: MediaQuery.of(context).size.height,
+          //   width: MediaQuery.of(context).size.width,
+          //   child: Text('Container'),
+          // )
+
+          ),
+           
+          floatingActionButton: ExpandableFab(
+          // ignore: sort_child_properties_last
+          children: [
+            ActionButton(
+                icon: Icon(Icons.smart_toy_outlined),
+                onPressed: () async {
+                  
+                 
+          }
+
+                 
+                ),
+            ActionButton(
+              icon: Icon(Icons.psychology_outlined),
+              onPressed: () async {
+                
+                // List<File> _imageList;
+                // gallery = _imageList.map<File>((Xfile) => File(Xfile.path)).cast<d.XFile>().toList();
+                // Navigator.push(context,MaterialPageRoute(builder: (context) => FileView(imgObjs: gallery)));
+              },
+            )
+          ],
+          distance: 112,
+        ),
     );
   }
 }
@@ -47,8 +110,6 @@ class _SliderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Controller c = Get.put(Controller());
-    print("user url-----------------${c.user}");
     return Container(
       color: Colors.white,
       padding: const EdgeInsets.only(top: 30),
@@ -62,23 +123,20 @@ class _SliderView extends StatelessWidget {
             backgroundColor: Colors.grey,
             child: CircleAvatar(
               radius: 60,
-              backgroundImage:Image.asset('images/blank_profile.jpg').image,
-              //  Image.network(
-              //         'https://nikhilvadoliya.github.io/assets/images/nikhil_1.webp')
-              //     .image
+              backgroundImage:Image.network((FirebaseAuth.instance.currentUser!.photoURL)!).image,
                   
             ),
           ),
           const SizedBox(
             height: 20,
           ),
-          const Text(
-            'Nick',
+           Text(
+            (FirebaseAuth.instance.currentUser!.displayName!),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
-              fontSize: 30,
+              fontSize: 20,
             ),
           ),
           const SizedBox(
@@ -95,25 +153,25 @@ class _SliderView extends StatelessWidget {
                   style: const TextStyle(
                       color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
               leading: Icon(Icons.add_circle, color: Colors.black),
-              onTap: () => null),
+              onTap: () => Get.to(Posts())),
           ListTile(
               title: Text('Notification',
                   style: const TextStyle(
                       color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
               leading: Icon(Icons.notifications_active, color: Colors.black),
               onTap: () => null),
-          ListTile(
-              title: Text('Likes',
-                  style: const TextStyle(
-                      color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
-              leading: Icon(Icons.favorite, color: Colors.black),
-              onTap: () => null),
-          ListTile(
-              title: Text('Setting',
-                  style: const TextStyle(
-                      color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
-              leading: Icon(Icons.settings, color: Colors.black),
-              onTap: () => null),
+          // ListTile(
+          //     title: Text('Likes',
+          //         style: const TextStyle(
+          //             color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
+          //     leading: Icon(Icons.favorite, color: Colors.black),
+          //     onTap: () => null),
+          // ListTile(
+          //     title: Text('Setting',
+          //         style: const TextStyle(
+          //             color: Colors.black, fontFamily: 'BalsamiqSans_Regular')),
+          //     leading: Icon(Icons.settings, color: Colors.black),
+          //     onTap: () => null),
           ListTile(
               title: Text('LogOut',
                   style: const TextStyle(

@@ -6,7 +6,7 @@ class FirebaseServices {
   final _auth = FirebaseAuth.instance;
   final _googleSignIn = GoogleSignIn();
 
-  signInWithGoogle() async {
+  signInWithGoogle(String role) async {
     try {
       final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
       if (googleSignInAccount!= null){
@@ -18,7 +18,9 @@ class FirebaseServices {
         await _auth.signInWithCredential(authCredential).then((value) async {
           User? user = FirebaseAuth.instance.currentUser;
           FirebaseFirestore.instance.collection("users").doc(user!.uid).set({
-            'email':user.email
+            'email':user.email,
+            'role': role,
+            
 
           });
 
