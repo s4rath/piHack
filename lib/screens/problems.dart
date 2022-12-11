@@ -7,14 +7,14 @@ import 'package:get/get.dart';
 import 'package:the_app/controller/getC.dart';
 import 'package:the_app/screens/home.dart';
 
-class Posts extends StatefulWidget {
-  const Posts({super.key});
+class Problm extends StatefulWidget {
+  const Problm({super.key});
 
   @override
-  State<Posts> createState() => _PostsState();
+  State<Problm> createState() => _ProblmState();
 }
 
-class _PostsState extends State<Posts> {
+class _ProblmState extends State<Problm> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController _content = TextEditingController();
@@ -22,7 +22,7 @@ class _PostsState extends State<Posts> {
     int num = 0;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Success Stories'),
+        title: Text('Say Something'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +36,7 @@ class _PostsState extends State<Posts> {
               maxLines: 10,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Write Your Success Story...',
+                labelText: 'Whats on your mind?',
                 fillColor: Colors.grey[300],
                 filled: true,
               ),
@@ -48,18 +48,18 @@ class _PostsState extends State<Posts> {
               setState(() {
                 DateTime now = DateTime.now();
               });
-              FirebaseFirestore.instance.collection('posts').doc('${now}').set({
+              FirebaseFirestore.instance.collection('Problm').doc('${now}').set({
                 'uid': user!.uid,
                 'uname': user.displayName,
                 'content': _content.text,
               }).whenComplete(() {
                 _content.clear();
-                Get.snackbar('Posted', 'successfully posted');
+                Get.snackbar('Posted', 'Feeling Better!?');
               });
             },
             child: Text('Submit'),
           ),
-           ElevatedButton(onPressed: (){
+          ElevatedButton(onPressed: (){
             Get.to(HomePage());
           }, child: Text('Home'))
         ],

@@ -44,51 +44,54 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Click here to '),
-                  ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text('TextField in Dialog'),
-                                content: TextField(
-                                  //  onChanged: (value) {
-                                  //    setState(() {
-                                  //      valueText = value;
-                                  //    });
-                                  //  },
-                                  controller: _textFieldController,
-                                  decoration: InputDecoration(
-                                      hintText: "Text Field in Dialog"),
-                                ),
-                                actions: <Widget>[
-                                  ElevatedButton(
-                                    //  color: Colors.green,
-                                    //  textColor: Colors.white,
-                                    child: Text('OK'),
-                                    onPressed: () async {
-                                      var myListFiltered = toklist.where((e) =>
-                                          e == _textFieldController.text);
-                                      if (myListFiltered.length > 0) {
-                                        await FirebaseServices()
-                                            .signInWithGoogle('counselor');
-                                        Get.to(HomePage());
-                                        // Do stuff with myListFiltered.first
-                                      } else {
-                                        Get.to(LoginScreen());
-                                        Get.snackbar('TokenID Error',
-                                            'Please enter correct ID');
-                                        // Element is not found
-                                      }
-
-                                      Navigator.pop(context);
-                                    },
+                  Container(
+                    color: Colors.black,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text('Token ID'),
+                                  content: TextField(
+                                    //  onChanged: (value) {
+                                    //    setState(() {
+                                    //      valueText = value;
+                                    //    });
+                                    //  },
+                                    controller: _textFieldController,
+                                    decoration: InputDecoration(
+                                        hintText: "Enter your Token ID.."),
                                   ),
-                                ],
-                              );
-                            });
-                      },
-                      child: Text('Doctors'))
+                                  actions: <Widget>[
+                                    ElevatedButton(
+                                      //  color: Colors.black,
+                                      //  textColor: Colors.white,
+                                      child: Text('OK'),
+                                      onPressed: () async {
+                                        var myListFiltered = toklist.where((e) =>
+                                            e == _textFieldController.text);
+                                        if (myListFiltered.length > 0) {
+                                          await FirebaseServices()
+                                              .signInWithGoogle('counselor');
+                                          Get.to(HomePage());
+                                          // Do stuff with myListFiltered.first
+                                        } else {
+                                          Get.to(LoginScreen());
+                                          Get.snackbar('TokenID Error',
+                                              'Please enter correct ID');
+                                          // Element is not found
+                                        }
+
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
+                        child: Container(child: Text('Doctors'),color: Colors.black,)),
+                  )
                 ],
               ),
             ),
