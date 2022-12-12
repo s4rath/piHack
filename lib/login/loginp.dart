@@ -30,13 +30,16 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: 20,
+            height: 100,
           ),
-          Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height / 3,
-            child: Image.asset('images/flutter.png'),
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height / 3,
+              child: Image.asset('images/umatterlogo.png'),
+            ),
           ),
+          Center(child: Text('UMatter',style: TextStyle(fontSize: 20),),),
           Center(
             child: Container(
               child: Row(
@@ -112,95 +115,95 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Email',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.black,
-                        ),
-                        child: TextFormField(
-                          controller: _email,
-                          style: TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Icon(
-                              Icons.email,
-                              color: Colors.white,
-                            ),
-                            hintText: 'Email',
-                            hintStyle: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      const Text(
-                        'Password',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.black,
-                        ),
-                        child: TextFormField(
-                          controller: _password,
-                          style: TextStyle(color: Colors.white),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Icon(
-                              Icons.lock,
-                              color: Colors.white,
-                            ),
-                            hintText: 'Password',
-                            hintStyle: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 35),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Colors.black,
-                          ),
-                          child: const Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                ' Log In',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      // const Text(
+                      //   'Email',
+                      //   style: TextStyle(
+                      //     color: Colors.black,
+                      //     fontSize: 20,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 10),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(12),
+                      //     color: Colors.black,
+                      //   ),
+                      //   child: TextFormField(
+                      //     controller: _email,
+                      //     style: TextStyle(color: Colors.white),
+                      //     decoration: InputDecoration(
+                      //       border: InputBorder.none,
+                      //       prefixIcon: Icon(
+                      //         Icons.email,
+                      //         color: Colors.white,
+                      //       ),
+                      //       hintText: 'Email',
+                      //       hintStyle: TextStyle(color: Colors.white),
+                      //     ),
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 15),
+                      // const Text(
+                      //   'Password',
+                      //   style: TextStyle(
+                      //     color: Colors.black,
+                      //     fontSize: 20,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 15),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(12),
+                      //     color: Colors.black,
+                      //   ),
+                      //   child: TextFormField(
+                      //     controller: _password,
+                      //     style: TextStyle(color: Colors.white),
+                      //     decoration: InputDecoration(
+                      //       border: InputBorder.none,
+                      //       prefixIcon: Icon(
+                      //         Icons.lock,
+                      //         color: Colors.white,
+                      //       ),
+                      //       hintText: 'Password',
+                      //       hintStyle: TextStyle(color: Colors.white),
+                      //     ),
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 35),
+                      // GestureDetector(
+                      //   onTap: () {
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => HomePage()));
+                      //   },
+                      //   child: Container(
+                      //     decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(30),
+                      //       color: Colors.black,
+                      //     ),
+                      //     child: const Center(
+                      //       child: Padding(
+                      //         padding: EdgeInsets.all(10.0),
+                      //         child: Text(
+                      //           ' Log In',
+                      //           style: TextStyle(
+                      //             color: Colors.white,
+                      //             fontSize: 30,
+                      //             fontWeight: FontWeight.w500,
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       const SizedBox(height: 35),
                       const Center(
                         child: Text(
-                          '- Or Sign In with -',
+                          '- Sign In with Google -',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
