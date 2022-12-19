@@ -3,19 +3,16 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:the_app/components/expandablefab.dart';
 import 'package:the_app/login/loginp.dart';
-import 'package:the_app/screens/allproblm.dart';
 import 'package:the_app/screens/chat.dart';
-import 'package:the_app/screens/posts.dart';
-import 'package:the_app/screens/problems.dart';
+import 'package:the_app/screens/user/allproblm.dart';
+import 'package:the_app/screens/user/posts.dart';
+import 'package:the_app/screens/user/problems.dart';
 import '../../services/firebase_services.dart';
-import '../controller/getC.dart';
+
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});

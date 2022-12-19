@@ -43,6 +43,7 @@ dependencies:
   flutter_slider_drawer: ^2.1.2
   cloud_firestore: ^4.2.0
   http: ^0.13.4
+  file_picker: ^5.2.4
 
 
 dev_dependencies:
@@ -75,6 +76,8 @@ flutter:
     - images/welcome.png
     - images/blank_profile.jpg
     - images/umatterlogo.png
+    - images/user.png
+    - images/doctor.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

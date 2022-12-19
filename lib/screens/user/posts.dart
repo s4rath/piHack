@@ -5,16 +5,16 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:the_app/controller/getC.dart';
-import 'package:the_app/screens/home.dart';
+import 'package:the_app/screens/user/home.dart';
 
-class Problm extends StatefulWidget {
-  const Problm({super.key});
+class Posts extends StatefulWidget {
+  const Posts({super.key});
 
   @override
-  State<Problm> createState() => _ProblmState();
+  State<Posts> createState() => _PostsState();
 }
 
-class _ProblmState extends State<Problm> {
+class _PostsState extends State<Posts> {
   @override
   Widget build(BuildContext context) {
     final TextEditingController _content = TextEditingController();
@@ -22,7 +22,7 @@ class _ProblmState extends State<Problm> {
     int num = 0;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Say Something'),
+        title: Text('Success Stories'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +36,7 @@ class _ProblmState extends State<Problm> {
               maxLines: 10,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Whats on your mind?',
+                labelText: 'Write Your Success Story...',
                 fillColor: Colors.grey[300],
                 filled: true,
               ),
@@ -48,18 +48,18 @@ class _ProblmState extends State<Problm> {
               setState(() {
                 DateTime now = DateTime.now();
               });
-              FirebaseFirestore.instance.collection('Problm').doc('${now}').set({
+              FirebaseFirestore.instance.collection('posts').doc('${now}').set({
                 'uid': user!.uid,
                 'uname': user.displayName,
                 'content': _content.text,
               }).whenComplete(() {
                 _content.clear();
-                Get.snackbar('Posted', 'Feeling Better!?');
+                Get.snackbar('Posted', 'successfully posted');
               });
             },
             child: Text('Submit'),
           ),
-          ElevatedButton(onPressed: (){
+           ElevatedButton(onPressed: (){
             Get.to(HomePage());
           }, child: Text('Home'))
         ],
