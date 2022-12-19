@@ -28,6 +28,7 @@ class _DocLoginState extends State<DocLogin> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
+        
         children: [
           Container(
             padding: EdgeInsets.all(8),
@@ -41,18 +42,21 @@ class _DocLoginState extends State<DocLogin> {
                 IconButton(
                     onPressed: () async {
                       selectFile();
-
-                  
                     },
-                    icon: const Icon(Icons.image_outlined,size: 40,)),
+                    icon: const Icon(
+                      Icons.image_outlined,
+                      size: 40,
+                    )),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
                   padding: EdgeInsets.all(8),
                   // color: Colors.red,
                   width: 200,
                   height: 30,
-                  child: Text(file == 'empty' ? 'No file selected' : file,overflow: TextOverflow.ellipsis,),
-                 
+                  child: Text(
+                    file == 'empty' ? 'No file selected' : file,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 )
               ],
             ),
@@ -61,7 +65,26 @@ class _DocLoginState extends State<DocLogin> {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black, fixedSize: Size(200, 20)),
-              child: Text('Scan and Login'))
+              child: Text('Scan and SignUp')),
+          SizedBox(
+            height: 60,
+          ),
+          Text(
+            '- Already have an Account -',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black, fixedSize: Size(200, 20)),
+              child: Text('Login')),
         ],
       ),
     );
