@@ -15,13 +15,13 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   // final TextEditingController _email = TextEditingController();
   // final TextEditingController _password = TextEditingController();
-  final TextEditingController _textFieldController = TextEditingController();
-  final List toklist = [
-    'CMPTmLrgfYC',
-    'GK73YKE2XD',
-    'kfcVXjcFkvNQQ',
-    'eVhdeHqUrM'
-  ];
+  // final TextEditingController _textFieldController = TextEditingController();
+  // final List toklist = [
+  //   'CMPTmLrgfYC',
+  //   'GK73YKE2XD',
+  //   'kfcVXjcFkvNQQ',
+  //   'eVhdeHqUrM'
+  // ];
   
 
   @override
